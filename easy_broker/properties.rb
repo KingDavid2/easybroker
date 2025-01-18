@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'client'
 
 module EasyBroker
@@ -8,6 +10,11 @@ module EasyBroker
 
     def all(page = 1, limit = 20)
       response = @client.get('/properties', { page: page, limit: limit })
+      handle_response(response)
+    end
+
+    def find(id)
+      response = @client.get("/properties/#{id}")
       handle_response(response)
     end
 
